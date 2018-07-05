@@ -1,0 +1,62 @@
+<h1>Insertion Sort</h1>
+<h2>C++ Code:</h2>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#400000; font-weight:bold; '>void</span> insertion_sort<span style='color:#806030; '>(</span><span style='color:#800040; '>vector</span><span style='color:#806030; '>&lt;</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>></span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>)</span> <span style='color:#806030; '>{</span>
+    <span style='color:#400000; font-weight:bold; '>for</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>int</span> j<span style='color:#806030; '>=</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>,</span>N<span style='color:#806030; '>=</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>)</span>A<span style='color:#806030; '>.</span>size<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span> j<span style='color:#806030; '>&lt;</span>N<span style='color:#806030; '>;</span> <span style='color:#806030; '>+</span><span style='color:#806030; '>+</span>j<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+        <span style='color:#400000; font-weight:bold; '>int</span> key<span style='color:#806030; '>=</span>A<span style='color:#806030; '>[</span>j<span style='color:#806030; '>]</span><span style='color:#806030; '>;</span>
+        <span style='color:#400000; font-weight:bold; '>int</span> i<span style='color:#806030; '>=</span>j<span style='color:#806030; '>-</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>;</span>
+        <span style='color:#400000; font-weight:bold; '>while</span> <span style='color:#806030; '>(</span>i<span style='color:#806030; '>></span><span style='color:#806030; '>=</span><span style='color:#c00000; '>0</span> <span style='color:#806030; '>&amp;</span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>></span>key<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+            A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>+</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span><span style='color:#806030; '>=</span>A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>;</span>
+            <span style='color:#806030; '>-</span><span style='color:#806030; '>-</span>i<span style='color:#806030; '>;</span>
+        <span style='color:#806030; '>}</span>
+        A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>+</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span><span style='color:#806030; '>=</span>key<span style='color:#806030; '>;</span>
+    <span style='color:#806030; '>}</span>
+<span style='color:#806030; '>}</span>
+</pre>
+<h2>C++ Code with Comments:</h2>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#400000; font-weight:bold; '>void</span> insertion_sort<span style='color:#806030; '>(</span><span style='color:#800040; '>vector</span><span style='color:#806030; '>&lt;</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>></span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>)</span> <span style='color:#806030; '>{</span>
+    
+    <span style='color:#400000; font-weight:bold; '>for</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>int</span> j<span style='color:#806030; '>=</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>,</span>N<span style='color:#806030; '>=</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>)</span>A<span style='color:#806030; '>.</span>size<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span> j<span style='color:#806030; '>&lt;</span>N<span style='color:#806030; '>;</span> <span style='color:#806030; '>+</span><span style='color:#806030; '>+</span>j<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span> <span style='color:#c34e00; '>// loop invariant: the subarray A[0:j) contains the original</span>
+                                             <span style='color:#c34e00; '>//                 elements in A[0:j) in sorted order</span>
+                                             <span style='color:#c34e00; '>// note: A[0:j) denotes A[0] to A[j] non-inclusive</span>
+                                             <span style='color:#c34e00; '>//       this is the same as A[0] to A[j-1] inclusive</span>
+                                             <span style='color:#c34e00; '>//       ( i.e. A[0:j-1] )</span>
+        
+        <span style='color:#400000; font-weight:bold; '>int</span> key<span style='color:#806030; '>=</span>A<span style='color:#806030; '>[</span>j<span style='color:#806030; '>]</span><span style='color:#806030; '>;</span> <span style='color:#c34e00; '>// key is the value to be inserted</span>
+        
+        <span style='color:#400000; font-weight:bold; '>int</span> i<span style='color:#806030; '>=</span>j<span style='color:#806030; '>-</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>;</span>    <span style='color:#c34e00; '>// i is the index of A where key will be inserted after</span>
+        
+        <span style='color:#400000; font-weight:bold; '>while</span> <span style='color:#806030; '>(</span>i<span style='color:#806030; '>></span><span style='color:#806030; '>=</span><span style='color:#c00000; '>0</span> <span style='color:#806030; '>&amp;</span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>></span>key<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+                                <span style='color:#c34e00; '>//</span>
+                                <span style='color:#c34e00; '>// Summary:</span>
+                                <span style='color:#c34e00; '>//</span>
+                                <span style='color:#c34e00; '>// case 1) i is a terminal value -1</span>
+                                <span style='color:#c34e00; '>//</span>
+                                <span style='color:#c34e00; '>// XOR</span>
+                                <span style='color:#c34e00; '>//</span>
+                                <span style='color:#c34e00; '>// case 2) A[i]&lt;=key</span>
+                                <span style='color:#c34e00; '>//</span>
+
+                                <span style='color:#c34e00; '>//</span>
+                                <span style='color:#c34e00; '>// Details:</span>
+                                <span style='color:#c34e00; '>//</span>
+                                <span style='color:#c34e00; '>// 2 cases for terminating conditions occur when attempting</span>
+                                <span style='color:#c34e00; '>// to find the first index i to the left of index j whose value A[i]&lt;=key:</span>
+                                <span style='color:#c34e00; '>// Case 1) if there is no value i in A[0:j) such that A[i]&lt;=key,</span>
+                                <span style='color:#c34e00; '>//         then i==-1.</span>
+                                <span style='color:#c34e00; '>// Case 2) if there is a value i in A[0:j) such that A[i]&lt;=key,</span>
+                                <span style='color:#c34e00; '>//         then i equals the right-most index i&lt;j whose value A[i]&lt;=key</span>
+                                <span style='color:#c34e00; '>//</span>
+            
+            A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>+</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span><span style='color:#806030; '>=</span>A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>;</span>    <span style='color:#c34e00; '>// shift the contents of A[i:j] to the right by one</span>
+            <span style='color:#806030; '>-</span><span style='color:#806030; '>-</span>i<span style='color:#806030; '>;</span>            <span style='color:#c34e00; '>// ( this is performed one index i at a time )</span>
+                            <span style='color:#c34e00; '>// until an index i is found to insert the key after</span>
+            
+        <span style='color:#806030; '>}</span>
+        
+        A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>+</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span><span style='color:#806030; '>=</span>key<span style='color:#806030; '>;</span> <span style='color:#c34e00; '>// insert after A[i]</span>
+                    <span style='color:#c34e00; '>// for case 1) i==-1, A[i+1]==A[0], and A[0] is the smallest value in A[0:j)</span>
+                    <span style='color:#c34e00; '>// for case 2) A[i]&lt;=key, A[i+1]==the location in A to insert the key just after A[i]</span>
+        
+    <span style='color:#806030; '>}</span>
+<span style='color:#806030; '>}</span>
+</pre>
