@@ -1,0 +1,18 @@
+<h1>Selection Sort</h1>
+<h2>C++ Code:</h2>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#c34e00; '>//</span>
+<span style='color:#c34e00; '>// Loop Invariant: The left-most i items in A are ordered minimum values in A[0:N),</span>
+<span style='color:#c34e00; '>//                 starting with i=0 ( no items ) and ending at i=N-2 ( the second to last item ).</span>
+<span style='color:#c34e00; '>//</span>
+<span style='color:#c34e00; '>//           Note: There is no need to iterate i all the way to N-1 ( the last item ) since A[N-1] is</span>
+<span style='color:#c34e00; '>//                 the maximum value in A and is also the minimum element in the range A[N-1:N-1],</span>
+<span style='color:#c34e00; '>//                 therefore, the last item A[N-1] would be swapped with itself if i were allowed</span>
+<span style='color:#c34e00; '>//                 to iterate until N-1.</span>
+<span style='color:#c34e00; '>//</span>
+<span style='color:#400000; font-weight:bold; '>void</span> selection_sort<span style='color:#806030; '>(</span><span style='color:#800040; '>vector</span><span style='color:#806030; '>&lt;</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>></span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+    <span style='color:#400000; font-weight:bold; '>for</span> <span style='color:#806030; '>(</span><span style='color:#800040; '>size_t</span> i<span style='color:#806030; '>=</span><span style='color:#c00000; '>0</span><span style='color:#806030; '>,</span>N<span style='color:#806030; '>=</span>A<span style='color:#806030; '>.</span>size<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span> i<span style='color:#806030; '>&lt;</span>N<span style='color:#806030; '>-</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>;</span> <span style='color:#806030; '>+</span><span style='color:#806030; '>+</span>i<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+        <span style='color:#400000; font-weight:bold; '>auto</span> j<span style='color:#806030; '>=</span>distance<span style='color:#806030; '>(</span>A<span style='color:#806030; '>.</span>begin<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span><span style='color:#800040; '>min_element</span><span style='color:#806030; '>(</span>A<span style='color:#806030; '>.</span>begin<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>+</span>i<span style='color:#806030; '>,</span> A<span style='color:#806030; '>.</span>end<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span>
+        <span style='color:#800040; '>swap</span><span style='color:#806030; '>(</span>A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>,</span>A<span style='color:#806030; '>[</span>j<span style='color:#806030; '>]</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span>
+    <span style='color:#806030; '>}</span>
+<span style='color:#806030; '>}</span>
+</pre>
