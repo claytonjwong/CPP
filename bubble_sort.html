@@ -1,0 +1,36 @@
+<title>Bubble Sort</title>
+<h1>Bubble Sort</h1>
+<p><a href="https://en.wikipedia.org/wiki/Bubble_sort" target="_blank">More Details</a></p>
+<h2>C++ Code:</h2>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#c34e00; '>//</span>
+<span style='color:#c34e00; '>// BUBBLE-SORT</span>
+<span style='color:#c34e00; '>//</span>
+<span style='color:#c34e00; '>// loop-invariant:</span>
+<span style='color:#c34e00; '>//</span>
+<span style='color:#c34e00; '>// the right-most i elements are the largest i elements in A[0:N), 0&lt;=i&lt;N</span>
+<span style='color:#c34e00; '>// sorted in ascending order</span>
+<span style='color:#c34e00; '>//</span>
+<span style='color:#400000; font-weight:bold; '>void</span> bubble_sort1<span style='color:#806030; '>(</span><span style='color:#800040; '>vector</span><span style='color:#806030; '>&lt;</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>></span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+    <span style='color:#400000; font-weight:bold; '>bool</span> swapped<span style='color:#806030; '>;</span>
+    <span style='color:#400000; font-weight:bold; '>do</span> <span style='color:#806030; '>{</span>
+        swapped<span style='color:#806030; '>=</span><span style='color:#400000; font-weight:bold; '>false</span><span style='color:#806030; '>;</span>
+        <span style='color:#400000; font-weight:bold; '>for</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>int</span> i<span style='color:#806030; '>=</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>,</span>N<span style='color:#806030; '>=</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>)</span>A<span style='color:#806030; '>.</span>size<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span> i<span style='color:#806030; '>&lt;</span>N<span style='color:#806030; '>;</span> <span style='color:#806030; '>+</span><span style='color:#806030; '>+</span>i<span style='color:#806030; '>)</span>
+            <span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span>A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>-</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span> <span style='color:#806030; '>></span> A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+                <span style='color:#800040; '>swap</span><span style='color:#806030; '>(</span>A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>-</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span>A<span style='color:#806030; '>[</span>i<span style='color:#806030; '>]</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span>
+                swapped<span style='color:#806030; '>=</span><span style='color:#400000; font-weight:bold; '>true</span><span style='color:#806030; '>;</span>
+            <span style='color:#806030; '>}</span>
+    <span style='color:#806030; '>}</span> <span style='color:#400000; font-weight:bold; '>while</span> <span style='color:#806030; '>(</span>swapped<span style='color:#806030; '>)</span><span style='color:#806030; '>;</span>
+<span style='color:#806030; '>}</span>
+
+<span style='color:#400000; font-weight:bold; '>void</span> bubble_sort2<span style='color:#806030; '>(</span><span style='color:#800040; '>vector</span><span style='color:#806030; '>&lt;</span><span style='color:#400000; font-weight:bold; '>int</span><span style='color:#806030; '>></span><span style='color:#806030; '>&amp;</span> A<span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+    <span style='color:#400000; font-weight:bold; '>bool</span> swapped<span style='color:#806030; '>;</span>
+    <span style='color:#400000; font-weight:bold; '>do</span> <span style='color:#806030; '>{</span>
+        swapped<span style='color:#806030; '>=</span><span style='color:#400000; font-weight:bold; '>false</span><span style='color:#806030; '>;</span>
+        <span style='color:#400000; font-weight:bold; '>for</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>auto</span> itr<span style='color:#806030; '>=</span>A<span style='color:#806030; '>.</span>begin<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span> itr<span style='color:#806030; '>!</span><span style='color:#806030; '>=</span>A<span style='color:#806030; '>.</span>end<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>&amp;</span><span style='color:#806030; '>&amp;</span> itr<span style='color:#806030; '>!</span><span style='color:#806030; '>=</span>prev<span style='color:#806030; '>(</span>A<span style='color:#806030; '>.</span>end<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span> <span style='color:#806030; '>+</span><span style='color:#806030; '>+</span>itr<span style='color:#806030; '>)</span>
+            <span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>*</span>itr <span style='color:#806030; '>></span> <span style='color:#806030; '>*</span>next<span style='color:#806030; '>(</span>itr<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>{</span>
+                <span style='color:#800040; '>iter_swap</span><span style='color:#806030; '>(</span>itr<span style='color:#806030; '>,</span>next<span style='color:#806030; '>(</span>itr<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>;</span>
+                swapped<span style='color:#806030; '>=</span><span style='color:#400000; font-weight:bold; '>true</span><span style='color:#806030; '>;</span>
+            <span style='color:#806030; '>}</span>
+    <span style='color:#806030; '>}</span> <span style='color:#400000; font-weight:bold; '>while</span> <span style='color:#806030; '>(</span>swapped<span style='color:#806030; '>)</span><span style='color:#806030; '>;</span>
+<span style='color:#806030; '>}</span>
+</pre>
