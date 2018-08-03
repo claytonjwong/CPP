@@ -1,13 +1,73 @@
 <title>Towers of Hanoi</title>
 <body style="margin: 20px;">
 	<h1>Towers of Hanoi</h1>
+	<h2>Rules</h2>
 	<p>
-		Capstone project from <a href="https://github.com/claytonjwong/Sandbox-CPP/tree/master/_UDUB/CPP_1" target="_blank">CPROGRM 711 A Wi 18: C++ Programming: Introduction</a>.&nbsp; Implemented using the <a href="https://www.sfml-dev.org/" target="_blank">Simple and Fast Multimedia Library (SFML)</a>.
+		There are 3 rods with N disks stacked on the first rod in descending order (smallest on top and largest on bottom).&nbsp; Move the N disks from the first rod to the second rod.&nbsp; <b>Constraint:</b> only smaller disks are allowed to be placed on top of larger disks.&nbsp; A third rod can be used to satisfy constrained disk movement.
+	</p>
+	<table style="padding: 15px;">
+		<tr>
+			<td>
+				<h2>Start:</h2>
+			</td>
+			<td>
+				<img src="ToH_screenshot_beg.png" width="500" height="150" />
+			</td>
+		</tr>
+		<tr><td><br/></td></tr>
+		<tr>
+			<td>
+				<h2>Finish:&nbsp;&nbsp;</h2>
+			</td>
+			<td>
+				<img src="ToH_screenshot_end.png" width="500" height="150" />
+			</td>
+		</tr>
+	</table>
+	<br/><br/>
+	<h2>Recursive Algorithm</h2>
+	<p>
+		A recursive algorithm moves N-1 disks from the first rod to the second rod using the third rod as an auxillary rod.&nbsp; After the N-1 disks are moved, the remaining largest Nth disk is moved from the first rod to the second rod.&nbsp; Then the remaining N-1 disks on the auxillary rod are then moved to the destination rod using the source rod as an auxillary rod.&nbsp; When the recursive call stack completely unwinds in the end, the destination rod contains all N disks in descending order, and the movement of those N disks follows the rules previously mentioned above (i.e. only smaller disks can be placed on top of larger disks).
+	</p>
+	<h3>Algorithm Source Code</h3>
+	<p>
+		"go" is my subjectively preferred nomenclature for recursive function designation.&nbsp; Just for fun, I wrote "go2" as a single-line version of "go" using the comma operator.
 	</p>
 	<p>
-		<a href="https://github.com/claytonjwong/Towers-Of-Hanoi" target="_blank">View source code on GitHub</a>
+		<a href="https://github.com/claytonjwong/Sandbox-CPP/blob/master/ToH_example_algorithm/ToH_example_algorithm/ToH_example_algorithm.cpp" target="_blank">
+			Source code available on GitHub
+		</a>
 	</p>
+	<img src="ToH_codeshot.png" width="900" height="300" />
 	<br/>
-	<h2>Screen Recording:</h2>
-	<video controls="controls" width="800" height="600" name="Video Name" src="ToH_Demo.mov"/>
+	<br/>
+	
+	
+	<h1>Visualization via Screen Recording:</h1>
+	<table style="padding: 15px;">
+		<tr style="background-color:#F1F1F1; font-style:italic; font-size:large;">
+			<td>
+				"Seeing is Believing"
+			</td>
+		</tr>
+		<tr>
+			<td>
+				&nbsp;&nbsp;<a href="http://classic.battle.net/war3/orc/units/farseer.shtml" target="_blank">-Far Seer</a>
+			</td>
+		</tr>
+	</table>
+	<ul>
+		<li>
+			Capstone project from <a href="https://github.com/claytonjwong/Sandbox-CPP/tree/master/_UDUB/CPP_1" target="_blank">CPROGRM 711 A Wi 18: C++ Programming: Introduction</a>
+		</li>
+		<li>
+			Implementation via MVC design pattern atop the <a href="https://www.sfml-dev.org/" target="_blank">Simple and Fast Multimedia Library (SFML)</a>
+		</li>
+	</ul>
+	<p>
+		<a href="https://github.com/claytonjwong/Towers-Of-Hanoi" target="_blank">
+			Source code available on GitHub
+		</a>
+	</p>
+	<video controls="controls" width="700" height="400" name="Video Name" src="ToH_Demo.mov"/>
 </body>

@@ -28,7 +28,8 @@
 	</ul>
 	<br/>
 	
-	<h2>Data Structures + Algorithms</h2>
+	<h2>Algorithms + Data Structures</h2>
+	<p>To use C++ effectively, a basic understanding of algorithms and data structures is required due to the flexibility allowed via STL Collections.&nbsp; Performance can be improved or impaired based on the combination of both the algorithm and the data structure used by the algorithm.&nbsp; The two go hand-in-hand, each algorithm + data structure has specific strengths + weaknesses and should be carefully choosen for optimal function.&nbsp; Choose the data structure which results in the simplest code which performs the most common use-case operations efficiently.</p>
 	<ul>
 		<li><a href="leetcode.html" target="_blank">LeetCode.com</a></li>
 		<li><a href="clrs.html" target="_blank">Intro to Algorithms</a></li>
@@ -151,18 +152,23 @@
 
 	<h4>
 		<a href="http://www.cplusplus.com/reference/stl/" target="_blank">
-			STL Containers
+			STL Collections (Containers / Data Structures)
 		</a>
 	</h4>
+	<p>
+		Each STL collection's data structure performs certain operations efficiently and other operations inefficiently.&nbsp; Use the collection interface, as it exposes methods which the data structure performs efficiently and does <strong>not</strong> expose methods which would be performed inefficiently.&nbsp; For example, vector does <strong>not</strong> provide "remove" methods and list does <strong>not</strong> provide "random access" methods.
+	</p>
 	<table>
 		<tr style="background-color:#F1F1F1; font-weight: bold; vertical-align: top;">
 			<td>&nbsp;&nbsp;Type</td>
 			<td>&nbsp;&nbsp;Examples</td>
+			<td>&nbsp;&nbsp;Strength</td>
+			<td>&nbsp;&nbsp;Weakness</td>
 		</tr>
 		<tr>
 			<td>
 				<a href="https://en.wikipedia.org/wiki/Sequence_container_(C%2B%2B)" target="_blank">
-					Sequence Containers
+					Sequence Collections
 				</a>
 			</td>
 			<td>
@@ -189,11 +195,43 @@
 					</li>
 				</ul>
 			</td>
+			<td>
+				<ul>
+					<li>
+						random access, add/remove from back
+					</li>
+					<li>
+						random access, add/remove from back
+					</li>
+					<li>
+						random access, add/remove from front/back
+					</li>
+					<li>
+						add/remove from any position
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>
+						add/remove from beginning/middle
+					</li>
+					<li>
+						add/remove from beginning/middle
+					</li>
+					<li>
+						add/remove from middle
+					</li>
+					<li>
+						random access
+					</li>
+				</ul>
+			</td>
 		</tr>
 		<tr>
 			<td>
 				<a href="https://en.wikipedia.org/wiki/Associative_containers" target="_blank">
-					Associative Containers
+					Associative Collections
 				</a>
 			</td>
 			<td>
@@ -224,7 +262,7 @@
 		<tr>
 			<td>
 				<a href="https://stackoverflow.com/questions/3873802/what-are-containers-adapters-c" target="_blank">
-					Container Adaptors
+					Collection Adaptors
 				</a>
 			</td>
 			<td>
@@ -255,7 +293,7 @@
 			STL Iterators
 		</a>
 		&nbsp;&nbsp;
-		[<a href="http://www.aristeia.com/Papers/CUJ_June_2001.pdf" target="_blank">Three Guidelines for Effective Iterator Usage</a>]
+		[<a href="http://www.aristeia.com/Papers/CUJ_June_2001.pdf" target="_blank">Guidelines</a>]
 	</h4>
 	<table>
 		<tr style="background-color:#F1F1F1; font-weight: bold; vertical-align: top;">
@@ -344,7 +382,7 @@
 					<li>
 						<a href="https://stackoverflow.com/questions/3476938/example-to-use-shared-ptr" target="_blank">
 							shared_ptr:</a>
-						&nbsp;shared ownership with control block for atomic ref cnt of shared/weak ptrs
+						&nbsp;shared ownership with control block for atomic reference count of shared/weak pointers
 					</li>
 					<li>
 						<a href="https://stackoverflow.com/questions/12030650/when-is-stdweak-ptr-useful" target="_blank">
@@ -434,6 +472,11 @@
 			</a>
 		</li>
 		<li>
+			<a href="https://stackoverflow.com/questions/13346879/const-vs-constexpr-on-variables" target="_blank">
+				const VS constexpr
+			</a>
+		</li>
+		<li>
 			<a href="http://www.stroustrup.com/C++11FAQ.html#constexpr" target="_blank">
 				constexpr
 			</a>
@@ -483,6 +526,9 @@
 			</a>
 		</li>
 		<li>
+			<a href="https://en.wikipedia.org/wiki/Copy_elision" target="_blank">RVO (copy elision)</a>
+		</li>
+		<li>
 			<a href="https://en.wikipedia.org/wiki/SOLID" target="_blank">
 				SOLID
 			</a>
@@ -491,6 +537,9 @@
 			<a href="https://stackoverflow.com/questions/1563897/c-static-constant-string-class-member" target="_blank">
 				static const definition of non-integral type
 			</a>
+		</li>
+		<li>
+			<a href="http://leethomason.github.io/tinyxml2/" target="_blank">XML (TinyXML-2)</a>
 		</li>
 	</ul>
 	<hr>
