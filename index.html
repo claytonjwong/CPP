@@ -16,7 +16,7 @@
 
 	<h1>Synopsis</h1>
 	<p>
-		Hi, my name is Clayton, and I'm documenting my journey towards learning the C++ language.&nbsp; This website is a repository of subjectively interesting C++ topics, books, and references.&nbsp; My end-goal is to enable myself (and help others along the way) to effectively harness the performance benefits of C++.&nbsp;
+		Hi, my name is Clayton.&nbsp; I'm documenting my journey towards learning the C++ language.&nbsp; This website is a repository of subjectively interesting C++ topics, books, and references.&nbsp; My end-goal is to enable myself (and help others along the way) to effectively harness the performance benefits of C++.&nbsp;
 	</p>
 	<br/>
 
@@ -155,9 +155,17 @@
 			STL Collections (Containers / Data Structures)
 		</a>
 	</h4>
-	<p>
-		Each STL collection's data structure performs certain operations efficiently and other operations inefficiently.&nbsp; Use the collection interface, as it exposes methods which the data structure performs efficiently and does <strong>not</strong> expose methods which would be performed inefficiently.&nbsp; For example, vector does <strong>not</strong> provide "remove" methods and list does <strong>not</strong> provide "random access" methods.
-	</p>
+	<ul>
+		<li>
+			Each STL collection's data structure performs certain operations efficiently and other operations inefficiently.
+		</li>
+		<li>
+			Use the STL collection's interface, as it exposes methods which the data structure performs efficiently and does <i>not</i> expose methods which would be performed inefficiently or dangerously.&nbsp; For example, vector does <i>not</i> provide "erase" methods and list does <i>not</i> provide "random access" methods.
+		</li>
+		<li>
+			Collections are <i>not</i> substituable, they violate Lisvok's Substitution Principle.&nbsp; This can be considered as a "feature" since improper use can be easily identified via the STL collection's interface.
+		</li>
+	</ul>
 	<table>
 		<tr style="background-color:#F1F1F1; font-weight: bold; vertical-align: top;">
 			<td>&nbsp;&nbsp;Type</td>
@@ -175,22 +183,22 @@
 				<ul>
 					<li>
 						<a href="http://www.cplusplus.com/reference/vector/vector/" target="_blank">
-							vector
+							std::vector
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/string/string/" target="_blank">
-							string
+							std::string
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/deque/deque/" target="_blank">
-							deque
+							std::deque
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/list/list/" target="_blank">
-							list
+							std::list
 						</a>
 					</li>
 				</ul>
@@ -235,26 +243,89 @@
 				</a>
 			</td>
 			<td>
+				&nbsp;&nbsp;&nbsp;&nbsp;Ordered:
 				<ul>
 					<li>
-						<a href="http://www.cplusplus.com/reference/set/set/" target="_blank">
-							set
-						</a>
-					</li>
-					<li>
 						<a href="http://www.cplusplus.com/reference/map/map/" target="_blank">
-							map
+							std::map
 						</a>
 					</li>
 					<li>
-						<a href="http://www.cplusplus.com/reference/set/multiset/" target="_blank">
-							multiset
+						<a href="http://www.cplusplus.com/reference/set/set/" target="_blank">
+							std::set
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/map/multimap/" target="_blank">
-							multimap
+							std::multimap
 						</a>
+					</li>
+					<li>
+						<a href="http://www.cplusplus.com/reference/set/multiset/" target="_blank">
+							std::multiset
+						</a>
+					</li>
+				</ul>
+				&nbsp;&nbsp;&nbsp;&nbsp;Unordered:
+				<ul>
+					<li>
+						<a href="http://www.cplusplus.com/reference/unordered_map/unordered_map/" target="_blank">
+							std::unordered_map
+						</a>
+					</li>
+					<li>
+						<a href="http://www.cplusplus.com/reference/unordered_map/unordered_multimap/" target="_blank">std::unordered_multimap</a>
+					</li>
+					<li>
+						<a href="http://www.cplusplus.com/reference/unordered_set/unordered_set/" target="_blank">
+							std::unordered_set
+						</a>
+					</li>
+					<li>
+						<a href="http://www.cplusplus.com/reference/unordered_set/unordered_multiset/" target="_blank">std::unordered_multiset</a>
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>
+						usually implemented as balanced binary tree, thus O(logN) time for insert, find, and remove
+					</li>
+					<li>
+						find val >= x: <a href="http://www.cplusplus.com/reference/algorithm/lower_bound/" target="_blank">lower_bound(x)</a>
+					</li>
+					<li>
+						find val > x: <a href="http://www.cplusplus.com/reference/algorithm/upper_bound/" target="_blank">upper_bound(x)</a>
+					</li>
+					<li>
+						find val == x: <a href="http://www.cplusplus.com/reference/algorithm/equal_range/" target="_blank">equal_range(x)</a>
+					</li>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<li>
+						implemented as hash tables, thus O(1) time for insert, find, and remove
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>
+						elements cannot be directly updated due to ordered constraint [i.e. remove() is not allowed], instead use erase() and insert() for "updates".
+					</li>
+					<li>
+						elements cannot be directly accessed, instead elements are indirectly accessed via iterators
+					</li>
+					<li>
+						bi-directional iterator support, thus cannot be used with algorithms requiring random-access iterators
+					</li>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
+					<li>
+						trade-off between O(N) space and O(1) time
 					</li>
 				</ul>
 			</td>
@@ -269,18 +340,32 @@
 				<ul>
 					<li>
 						<a href="http://www.cplusplus.com/reference/stack/stack/" target="_blank">
-							stack
+							std::stack
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/queue/queue/" target="_blank">
-							queue
+							std::queue
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/queue/priority_queue/" target="_blank">
-							priority_queue
+							std::priority_queue
 						</a>
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>
+						specialized usage
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>
+						generalized usage
 					</li>
 				</ul>
 			</td>
@@ -357,17 +442,17 @@
 				<ul>
 					<li>
 						<a href="http://www.cplusplus.com/reference/memory/unique_ptr/" target="_blank">
-							unique_ptr
+							std::unique_ptr
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/memory/shared_ptr/" target="_blank">
-							shared_ptr
+							std::shared_ptr
 						</a>
 					</li>
 					<li>
 						<a href="http://www.cplusplus.com/reference/memory/weak_ptr/" target="_blank">
-							weak_ptr
+							std::weak_ptr
 						</a>
 					</li>
 				</ul>
@@ -376,17 +461,19 @@
 				<ul>
 					<li>
 						<a href="http://www.drdobbs.com/cpp/c11-uniqueptr/240002708" target="_blank">
-							unique_ptr:</a>
-						 &nbsp;a unqiuely owned pointer (non-ambiguous ownership)
+							std::unique_ptr:</a>
+						 &nbsp;a unqiuely owned pointer (non-ambiguous ownership) [see:
+						<a href="https://stackoverflow.com/questions/22571202/differences-between-stdmake-unique-and-stdunique-ptr" target="_blank">std::make_unique</a>]
 					</li>
 					<li>
 						<a href="https://stackoverflow.com/questions/3476938/example-to-use-shared-ptr" target="_blank">
-							shared_ptr:</a>
-						&nbsp;shared ownership with control block for atomic reference count of shared/weak pointers
+							std::shared_ptr:</a>
+						&nbsp;shared ownership with control block for atomic reference count of shared/weak pointers [see:
+						<a href="https://stackoverflow.com/questions/20895648/difference-in-make-shared-and-normal-shared-ptr-in-c" target="_blank">std::make_shared</a>]
 					</li>
 					<li>
 						<a href="https://stackoverflow.com/questions/12030650/when-is-stdweak-ptr-useful" target="_blank">
-							weak_ptr:</a>
+							std::weak_ptr:</a>
 						&nbsp;a pointer (aware of when it dangles) [see:
 						<a href="http://www.cplusplus.com/reference/memory/weak_ptr/lock/" target="_blank">lock()</a> and <a href="http://www.cplusplus.com/reference/memory/weak_ptr/expired/">expired()</a>]
 					</li>
@@ -451,6 +538,78 @@
 		</li>
 	</ul>
 	<hr>
+	
+	<h3>
+		<a href="https://stackoverflow.com/questions/2762568/c-c-include-file-order-best-practices" target="_blank">Header file ordering</a>
+	</h3>
+	<p>
+		Header files should <i>not</i> be dependent upon other header files being included first.&nbsp; Each file should include what it needs.&nbsp; In general use the following order for includes to avoid include-order dependencies:
+	</p>
+	<ol type="1">
+		<li>user</li>
+		<li>third party</li>
+		<li>system</li>
+	</ol>
+	<hr>
+	
+	<h2>C and C++ interworking</h2>
+	<h3>
+		Common Operations
+	</h3>
+	<ul>
+		<li>
+			<a href="https://stackoverflow.com/questions/7352099/stdstring-to-char/7352163" target="_blank">std::string to char*</a>
+		</li>
+		<li>
+			<a href="https://stackoverflow.com/questions/194465/how-to-parse-a-string-to-an-int-in-c" target="_blank">std::string to int</a>
+		</li>
+		<li>
+			<a href="https://stackoverflow.com/questions/1374468/stringstream-string-and-char-conversion-confusion" target="_blank">std::stringstream to std::string to char*</a>
+		</li>
+	</ul>
+	<h3>
+		Macros
+	</h3>
+	<p>
+		This section is intended as a mapping between C style and C++ style code snippets.&nbsp; In general, avoid C style macros and prefer C++ classes instead.
+	</p>
+	<table>
+		<tr style="background-color:#F1F1F1; font-weight: bold; vertical-align: top;">
+			<td>C style</td>
+			<td>C++ style</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li>
+						INT_MIN
+					</li>
+					<li>
+						INT_MAX
+					</li>
+				</ul>
+			</td>
+			<td>
+				<ul>
+					<li>
+						<a href="http://www.cplusplus.com/reference/limits/numeric_limits/" target="_blank">std::numeric_limits&lt;int&gt;::min()</a>
+					</li>
+					<li>
+						<a href="http://www.cplusplus.com/reference/limits/numeric_limits/" target="_blank">std::numeric_limits&lt;int&gt;::max()</a>
+					</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<h3>
+		Preprocessor
+	</h3>
+	<ul>
+		<li>
+			<a href="https://gcc.gnu.org/onlinedocs/cpp/Concatenation.html" target="_blank"># and ## ( stringizing and token-pasting operators )</a>
+		</li>
+	</ul>
+	<hr>
 
 	<h2>
 		Additional References
@@ -465,6 +624,9 @@
 			<a href="https://en.wikipedia.org/wiki/Big_O_notation" target="_blank">
 				Big O notation
 			</a>
+		</li>
+		<li>
+			<a href="https://www.boost.org/" target="_blank">Boost C++ Libraries</a>
 		</li>
 		<li>
 			<a href="https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean" target="_blank">
@@ -490,6 +652,9 @@
 			<a href="https://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum" target="_blank">
 				enum class (scoped and strongly typed enums)
 			</a>
+		</li>
+		<li>
+			<a href="https://en.cppreference.com/w/cpp/error/exception" target="_blank">exception</a>
 		</li>
 		<li>
 			<a href="https://stackoverflow.com/questions/132358/how-to-read-file-content-into-istringstream" target="_blank">
@@ -539,6 +704,19 @@
 			</a>
 		</li>
 		<li>
+			<a href="http://neutrofoton.github.io/blog/2016/12/29/c-plus-plus-priority-queue-with-comparator/" target="_blank">
+				std::priority_queue with custom comparator
+			</a>
+		</li>
+		<li>
+			<a href="https://stackoverflow.com/questions/17016175/c-unordered-map-using-a-custom-class-type-as-the-key" target="_blank">
+				std::unordered_map with user-defined class type as key
+			</a>
+		</li>
+		<li>
+			<a href="https://www.uml-diagrams.org/" target="_blank">UML Diagrams</a>
+		</li>
+		<li>
 			<a href="http://leethomason.github.io/tinyxml2/" target="_blank">XML (TinyXML-2)</a>
 		</li>
 	</ul>
@@ -583,26 +761,14 @@
 			</td>
 		</tr>
 	</table>
-
 	<hr>
 	
-	
-	
-<h2>Change Log</h2>
+	<h2>Programmer's Log</h2>
 	<ul>
 		<li>
-			<b>2018-07-07:</b>&nbsp; Initial commit.&nbsp; I currently consider myself a two-star ** C++ programmer, since I can sufficiently write a <a href="https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146768/Straightforward-C++-(-EASY-to-understand-)-with-explanation" target="_blank">C++ solution with a pointer-to-a-pointer</a>.&nbsp; (Note: two-star ** concept per C++ instructor: <a href="https://www.pce.uw.edu/instructors/david-nielsen" target="_blank">David Nielsen</a>).&nbsp; Added University of Washington C++ Programming Courses (Winter, Spring, and Summer of 2018).&nbsp; Added C++ books and Miscellaneous sections.
-		</li>
-		<br>
-		<li>
-			<b>2018-07-17:</b>&nbsp; Added STL Containers, Iterators, and Algorithms.&nbsp; Added L value + R value section along with std::move + std::forward topics.&nbsp; Added memory management via Smart Pointers.&nbsp; Added Algorithms section.&nbsp; Added hyperlinks to Amazon.com for C++ books.&nbsp;
-		</li>
-		<br>
-		<li>
-			<b>2018-07-23:</b>&nbsp; Added enum class, constexpr, design patterns, regex, rdbuf() references.&nbsp; Added ancillary quotes.&nbsp; Added interview questions.&nbsp; Added practice books.
+			<b>2018-07-07:</b> I currently consider myself a two-star ** C++ programmer, since I can sufficiently write a <a href="https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/discuss/146768/Straightforward-C++-(-EASY-to-understand-)-with-explanation" target="_blank">C++ solution with a pointer-to-a-pointer</a>.&nbsp; (Note: two-star ** concept per C++ instructor: <a href="https://www.pce.uw.edu/instructors/david-nielsen" target="_blank">David Nielsen</a>).
 		</li>
 	</ul>
-	<br/>
 	<hr>
-	
+
 </body>
