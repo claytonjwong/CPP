@@ -163,7 +163,7 @@
 			Use the STL collection's interface, as it exposes methods which the data structure performs efficiently and does <i>not</i> expose methods which would be performed inefficiently or dangerously.&nbsp; For example, vector does <i>not</i> provide "erase" methods and list does <i>not</i> provide "random access" methods.
 		</li>
 		<li>
-			Collections are <i>not</i> substituable, they violate Lisvok's Substitution Principle.&nbsp; This can be considered as a "feature" since improper use can be easily identified via the STL collection's interface.
+			Collections are <i>not</i> substitutable, they violate <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle" target="_blank">Liskov Substitution Principle</a>.&nbsp; This can be considered as a "feature" since improper use can be easily identified via the STL collection's interface.
 		</li>
 	</ul>
 	<table>
@@ -206,32 +206,32 @@
 			<td>
 				<ul>
 					<li>
-						random access, add/remove from back
+						std::vector - random access, add/remove from back
 					</li>
 					<li>
-						random access, add/remove from back
+						std::string - random access, add/remove from back
 					</li>
 					<li>
-						random access, add/remove from front/back
+						std::deque - random access, add/remove from front/back
 					</li>
 					<li>
-						add/remove from any position
+						std::list - add/remove from any position
 					</li>
 				</ul>
 			</td>
 			<td>
 				<ul>
 					<li>
-						add/remove from beginning/middle
+						std::vector - add/remove from beginning/middle
 					</li>
 					<li>
-						add/remove from beginning/middle
+						std::string - add/remove from beginning/middle
 					</li>
 					<li>
-						add/remove from middle
+						std::deque - add/remove from middle
 					</li>
 					<li>
-						random access
+						std::list - bi-directional iterator access ( no random-access )
 					</li>
 				</ul>
 			</td>
@@ -292,13 +292,13 @@
 						usually implemented as balanced binary tree, thus O(logN) time for insert, find, and remove
 					</li>
 					<li>
-						find val >= x: <a href="http://www.cplusplus.com/reference/algorithm/lower_bound/" target="_blank">lower_bound(x)</a>
+						find element >= x: <a href="http://www.cplusplus.com/reference/algorithm/lower_bound/" target="_blank">lower_bound(x)</a>
 					</li>
 					<li>
-						find val > x: <a href="http://www.cplusplus.com/reference/algorithm/upper_bound/" target="_blank">upper_bound(x)</a>
+						find element > x: <a href="http://www.cplusplus.com/reference/algorithm/upper_bound/" target="_blank">upper_bound(x)</a>
 					</li>
 					<li>
-						find val == x: <a href="http://www.cplusplus.com/reference/algorithm/equal_range/" target="_blank">equal_range(x)</a>
+						find element(s) == x: <a href="http://www.cplusplus.com/reference/algorithm/equal_range/" target="_blank">equal_range(x)</a>
 					</li>
 					<br/>
 					<br/>
@@ -315,7 +315,7 @@
 						elements cannot be directly updated due to ordered constraint [i.e. remove() is not allowed], instead use erase() and insert() for "updates".
 					</li>
 					<li>
-						elements cannot be directly accessed, instead elements are indirectly accessed via iterators
+						elements cannot be directly accessed, instead elements are indirectly accessed via iterators [note: <a href="http://www.cplusplus.com/reference/map/map/at/" target="_blank">std::map::at()</a> and <a href="http://www.cplusplus.com/reference/map/map/operator[]/" target="_blank">std::map::operator[]</a> return a reference to the value]
 					</li>
 					<li>
 						bi-directional iterator support, thus cannot be used with algorithms requiring random-access iterators
