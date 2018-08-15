@@ -165,6 +165,11 @@
 		<li>
 			Collections are <i>not</i> substitutable, they violate <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle" target="_blank">Liskov Substitution Principle</a>.&nbsp; This can be considered as a "feature" since improper use can be easily identified via the STL collection's interface.
 		</li>
+		<li>
+			<a href="https://books.google.com/books?id=9DEJKhasp7gC&pg=PA393&lpg=PA393&dq=josuttis+table+7.57&source=bl&ots=_bZbK8DrNz&sig=G78NBmYMgVENaAQ4DHakLvRgB_k&hl=en&sa=X&ved=2ahUKEwjXjNOrxurcAhWniVQKHbkyAjwQ6AEwAXoECAkQAQ#v=onepage&q=josuttis%20table%207.57&f=false" target="_blank">
+				Table 7.57 Overview of Container Abilities [Josuttis]
+			</a>
+		</li>
 	</ul>
 	<table>
 		<tr style="background-color:#F1F1F1; font-weight: bold; vertical-align: top;">
@@ -315,7 +320,7 @@
 						elements cannot be directly updated due to ordered constraint [i.e. remove() is not allowed], instead use erase() and insert() for "updates".
 					</li>
 					<li>
-						elements cannot be directly accessed, instead elements are indirectly accessed via iterators [note: <a href="http://www.cplusplus.com/reference/map/map/at/" target="_blank">std::map::at()</a> and <a href="http://www.cplusplus.com/reference/map/map/operator[]/" target="_blank">std::map::operator[]</a> return a reference to the value]
+						elements cannot be directly accessed, instead elements are indirectly accessed via iterators [note: <a href="http://www.cplusplus.com/reference/map/map/at/" target="_blank">std::map::at()</a> and <a href="http://www.cplusplus.com/reference/map/map/operator[]/" target="_blank">std::map::operator[]</a> return a reference to the key's value]
 					</li>
 					<li>
 						bi-directional iterator support, thus cannot be used with algorithms requiring random-access iterators
@@ -377,40 +382,98 @@
 		<a href="http://www.cplusplus.com/reference/iterator/" target="_blank">
 			STL Iterators
 		</a>
-		&nbsp;&nbsp;
-		[<a href="http://www.aristeia.com/Papers/CUJ_June_2001.pdf" target="_blank">Guidelines</a>]
 	</h4>
+	<a href="http://www.aristeia.com/Papers/CUJ_June_2001.pdf" target="_blank">Guidelines for iterators</a>
+	<p>Choose an iterator with the least amount of capabilities which are sufficient for a particular use-case needs in order to keep code generic and less error-prone.&nbsp; For example, the input iterator is the proper iterator to use for console input.</p>
 	<table>
 		<tr style="background-color:#F1F1F1; font-weight: bold; vertical-align: top;">
-			<td>&nbsp;&nbsp;Type</td>
+			<td>&nbsp;&nbsp;Type</td><td>&nbsp;&nbsp;Capability</td>
 		</tr>
 		<tr>
 			<td>
+				<a href="http://www.cplusplus.com/reference/iterator/InputIterator/" target="_blank">
+					Input iterator
+				</a>
+			</td>
+			<td>
 				<ul>
 					<li>
-						<a href="http://www.cplusplus.com/reference/iterator/InputIterator/" target="_blank">
-							Input
-						</a>
+						single increment
 					</li>
 					<li>
-						<a href="http://www.cplusplus.com/reference/iterator/OutputIterator/" target="_blank">
-							Output
-						</a>
+						dereference
+					</li>
+				</ul>
+			</td>
+		</tr>
+	  <tr>
+			<td>
+				<a href="http://www.cplusplus.com/reference/iterator/OutputIterator/" target="_blank">
+					Output iterator
+				</a>				
+			</td>
+			<td>
+				<ul>
+					<li>
+						single increment
 					</li>
 					<li>
-						<a href="http://www.cplusplus.com/reference/iterator/ForwardIterator/" target="_blank">
-							Forward
-						</a>
+						assignment
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="http://www.cplusplus.com/reference/iterator/ForwardIterator/" target="_blank">
+					Forward iterator
+				</a>
+			</td>
+			<td>
+				<ul>
+					<li>
+						all Input iterator capabilities
 					</li>
 					<li>
-						<a href="http://www.cplusplus.com/reference/iterator/BidirectionalIterator/" target="_blank">
-							Bidirectional
-						</a>
+						all Output iterator capabilities
+					</li>
+
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="http://www.cplusplus.com/reference/iterator/BidirectionalIterator/" target="_blank">
+					Bidirectional iterator
+				</a>
+			</td>
+			<td>
+				<ul>
+					<li>
+						all Forward iterator capabilities
 					</li>
 					<li>
-						<a href="http://www.cplusplus.com/reference/iterator/RandomAccessIterator/" target="_blank">
-							Random Access
-						</a>
+						single decrement
+					</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="http://www.cplusplus.com/reference/iterator/RandomAccessIterator/" target="_blank">
+					Random Access iterator
+				</a>
+			</td>
+			<td>
+				<ul>
+					<li>
+						all Bidirectional iterator capabilities
+					</li>
+					<li>
+						increment by more than one
+					</li>
+					<li>
+						decrement by more than one
 					</li>
 				</ul>
 			</td>
@@ -554,9 +617,12 @@
 	
 	<h2>C and C++ interworking</h2>
 	<h3>
-		Common Operations
+		Conversions
 	</h3>
 	<ul>
+		<li>
+			<a href="https://stackoverflow.com/questions/1609163/what-is-the-difference-between-static-cast-and-c-style-casting" target="_blank">C-style casting vs static_cast&lt;&gt;</a>
+		</li>
 		<li>
 			<a href="https://stackoverflow.com/questions/7352099/stdstring-to-char/7352163" target="_blank">std::string to char*</a>
 		</li>
@@ -644,8 +710,18 @@
 			</a>
 		</li>
 		<li>
+			<a href="https://en.cppreference.com/w/cpp/language/cast_operator" target="_blank">
+				conversion operators
+			</a>
+		</li>
+		<li>
 			<a href="https://en.wikipedia.org/wiki/Software_design_pattern" target="_blank">
 				design patterns
+			</a>
+		</li>
+		<li>
+			<a href="https://en.wikipedia.org/wiki/Endianness" target="_blank">
+				Endianness (big-endian and little-endian format)
 			</a>
 		</li>
 		<li>
