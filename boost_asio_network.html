@@ -1,0 +1,162 @@
+<title>Boost.Asio Networking Tutorial</title>
+<body style="margin: 20px;">
+	<h1>Boost.Asio Networking Tutorial</h1>
+    <h2>This tutorial first explains <u>why</u> to:</h2>
+    <ol>
+        <li>
+            Install Homebrew, Boost, and BCP
+        </li>
+        <li>
+            Copy boost dependencies into a project
+        </li>
+        <li>
+            Create a synchronous TCP client / server
+        </li>
+        <li>
+            Create a synchronous UDP client / server
+        </li>
+    </ol>
+
+    <h2>This tutorial secondly explains <u>how</u> to:</h2>
+    <ol>
+        <li>
+            Install Homebrew, Boost, and BCP
+        </li>
+        <li>
+            Copy boost dependencies into a project
+        </li>
+        <li>
+            Create a synchronous TCP client / server
+        </li>
+        <li>
+            Create a synchronous UDP client / server
+        </li>
+    </ol>
+    <h2>WHY to...</h2>
+    <h3>Install Homebrew, Boost, and BCP</h3>
+    <ul>
+        <li>
+            <a href="https://brew.sh/" target="_blank">Homebrew</a> is a convenient tool for installing packages ( such as Boost and BCP )
+        </li>
+        <li>
+            <a href="https://www.boost.org/" target="_blank">Boost</a> is a set of C++ libraries.&nbsp; <a href="http://www.boost.org/libs/asio" target="_blank">Boost.Asio</a> is a subset of the Boost C++ libraries which will be used by this tutorial.
+        </li>
+        <li>
+            <a href="https://www.boost.org/doc/libs/1_68_0/tools/bcp/doc/html/index.html" target="_blank">BCP</a> is a tool for extracting subsets of the Boost C++ libraries into a project.
+        </li>
+    </ul>
+    <h3>Copy Boost dependencies into a project</h3>
+    <ul>
+        <li>
+            The sample projects are dependent upon Boost, so we need to copy, include, and link Boost dependencies into each sample project.
+        </li>
+    </ul>
+    <h3>Create a synchronous TCP+UDP client / server</h3>
+    <ul>
+        <li>
+            Creating a synchronous client / server is a great start to learn the basics of Boost.Asio.&nbsp; These basics can then be expanded upon to build an asynchronous client / server, which is significantly more complex due to multiple threads which result in non-linear code execution.
+        </li>
+    </ul>
+    <h2>HOW to...</h2>
+    <h3>Install Homebrew, Boost, and BCP</h3>
+    <ol>
+        <li>
+            <p>
+                Open terminal and enter the following command to install Homebrew:<br/><br/>
+                /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"<br/><br/>
+                <img src="boost/install_homebrew_1.png" />
+            </p>
+            
+        </li>
+        <li>
+            <p>
+                Press the RETURN key and enter your sudo password:&nbsp; ( Note: homebrew requires privledged administrative access for installation )<br/><br/>
+                <img src="boost/install_homebrew_2.png" />
+            </p>
+            <p>
+                Note: Git repositories will be cloned and a "Installation successful!" message is displayed once installation is completed successfully:<br/><br/>
+                <img src="boost/install_homebrew_3.png" />
+            </p>
+        </li>
+        <li>
+            <p>
+                Enter the following command to install Boost:<br/><br/>
+                brew install boost<br/><br/>
+                <img src="boost/install_boost_1.png" />
+            </p>
+        </li>
+        <li>
+            <p>
+                Enter the following command to install BCP:<br/><br/>
+                brew install boost-bcp<br/><br/>
+                <img src="boost/install_bcp_1.png" />
+            </p>
+        </li>
+    </ol>
+    <h3>Copy boost dependencies into a project</h3>
+    <ol>
+        <li>
+            <p>
+                Create a project in your favorite IDE.&nbsp; I've choosen to use <a href="https://www.jetbrains.com/clion/" target="_blank">CLion</a>.&nbsp; Copy and paste the <a href="https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/tutorial/tutdaytime1/src.html" target="_blank">TCP client code</a> from the <a href="https://www.boost.org/doc/libs/1_68_0/doc/html/boost_asio/tutorial.html" target="_blank">Boost.Asio tutorial</a> into a file named client.cpp.&nbsp; Observe the compilation failure due to missing Boost dependencies:<br/><br/>
+                <img src="boost/compile_error_missing_boost.png" />
+            </p>
+            
+        </li>
+        <li>
+            <p>
+                Open terminal and type the following command to go to the local include directory ( this is the directory where Boost is installed ):<br/><br/>
+                cd /usr/local/include<br/><br/>
+                ls<br/><br/>
+            </p>
+            <img src="boost/boost_include_directory.png" />
+        </li>
+        <li>
+            <p>
+                Type in the following command to pull in <b>boost/array.hpp</b> and its dependencies ( Note: modify the second parameter <b>/Users/clayton.wong/workspace/asio/sync/tcp/client</b>, to be the directory of the project previously created in your favorite IDE with client.cpp ):<br/><br/>
+                bcp boost/array.hpp /Users/clayton.wong/workspace/asio/sync/tcp/client<br/><br/>
+            </p>
+            <img src="boost/bcp_array_hpp.png" />
+        </li>
+        <li>
+            <p>
+                Type in the following command to pull in <b>boost/asio.hpp</b> and its dependencies ( Note: modify the second parameter <b>/Users/clayton.wong/workspace/asio/sync/tcp/client</b>, to be the directory of the project previously created in your favorite IDE with client.cpp ):<br/><br/>
+                bcp boost/asio.hpp /Users/clayton.wong/workspace/asio/sync/tcp/client<br/><br/>
+            </p>
+            <img src="boost/bcp_asio_hpp.png" />
+        </li>
+        <li>
+            <p>
+                Modify the build settings within your favorite IDE to include Boost header files and libraries.&nbsp; Ensure the Boost include directories are are included and the Boost libraries are linked to the compilation target.&nbsp; I'm using <a href="https://cmake.org/" target="_blank">CMake</a>.&nbsp; The contents of my CMakeLists.txt file are as follows ( Note: now client.cpp successfully compiles and links to the boost libraries ):<br/><br/>
+
+                cmake_minimum_required(VERSION 3.12)<br/>
+                <br/>
+                project(client)<br/>
+                <br/>
+                set(CMAKE_CXX_STANDARD 98)<br/>
+                set(Boost_INCLUDE_DIR /usr/local/include)<br/>
+                set(Boost_LIBRARY_DIR /usr/local/lib)<br/>
+                <br/>
+                find_package(Boost 1.67.0 COMPONENTS system filesystem REQUIRED)<br/>
+                <br/>
+                include_directories(${Boost_INCLUDE_DIR})<br/>
+                <br/>
+                add_executable(client client.cpp)<br/>
+                <br/>
+                target_link_libraries(client ${Boost_LIBRARIES})<br/>
+                <img src="boost/cmake_build_ok.png" />
+            </p>
+        </li>
+        <li>
+            Follow these same steps for the corresponding synchronous <a href="https://www.boost.org/doc/libs/1_66_0/doc/html/boost_asio/tutorial/tutdaytime2/src.html" target="_blank">TCP server</a>, and the synchronous <a href="https://www.boost.org/doc/libs/1_66_0/doc/html/boost_asio/tutorial/tutdaytime4/src.html" target="_blank">UDP client</a> / <a href="https://www.boost.org/doc/libs/1_66_0/doc/html/boost_asio/tutorial/tutdaytime5/src.html" target="_blank">UDP server</a>.&nbsp; The <a href="https://www.boost.org/doc/libs/1_66_0/doc/html/boost_asio/tutorial.html" target="_blank">Boost.Asio Tutorial</a> can be referred to for a basic explanation of both synchronous and asynchronous clients / servers.&nbsp;
+        </li>
+    </ol>
+    <br/><br/>
+    <h2>Final Thoughts</h2>
+        <p>
+            I bought the following book from Amazon, and I found it very helpful to learn more about Boost.Asio C++ network programming:<br/><br/>
+        </p>
+        <a target="_blank"  href="https://www.amazon.com/gp/product/1783986549/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1783986549&linkCode=as2&tag=claytonjwong-20&linkId=caf56e8d4b3eb61417edc5358155f3b3"><img border="0" src="//ws-na.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=US&ASIN=1783986549&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=claytonjwong-20" ></a><img src="//ir-na.amazon-adsystem.com/e/ir?t=claytonjwong-20&l=am2&o=1&a=1783986549" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+        <br/>
+        <a target="_blank" href="https://www.amazon.com/gp/product/1783986549/ref=a s_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1783986549&linkCode=as2&tag=claytonjwong-20&linkId=c9904c1a9c658b607e4fe86a762b6d56">Boost.Asio C++ Network Programming Cookbook</a><img src="//ir-na.amazon-adsystem.com/e/ir?t=claytonjwong-20&l=am2&o=1&a=1783986549" width="1" height="1" border="0" alt="" style="border:none !important; margin:0px !important;" />
+
+</body>
